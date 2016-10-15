@@ -1,0 +1,77 @@
+<section class="basics infobox-container">
+	<div class="headline"><h2>Allgemein</h2></div>
+
+	<div class="infobox">
+		<span class="label">Anrede</span>
+		<span class="value">{{guest.salutation}}</span>
+	</div>
+
+	<div class="infobox">
+		<span class="label">Vorname</span>
+		<span class="value">{{guest.firstname}}</span>
+	</div>
+
+	<div class="infobox">
+		<span class="label">Nachname</span>
+		<span class="value">{{guest.lastname}}</span>
+	</div>
+
+	<div class="infobox">
+		<span class="label">E-Mail Adresse</span>
+		<span class="value">{{guest.email}}</span>
+	</div>
+
+	<div class="inputbox checkbox">
+		<input type="checkbox" id="oneOnOne" ng-checked="guest.one_on_one == 1" name="oneOnOne" disabled readonly />
+		<label for="oneOnOne">Ich habe Interesse an der Teilnahme an Einzelgesprächen.</label>
+	</div>
+</section>
+
+<section class="tickets">
+	<div class="headline"><h2>Tickets</h2></div>
+
+	<div class="inputbox checkbox">
+		<div class="input">
+			<input type="checkbox" id="student" ng-checked="guest.student == 1" name="student" disabled readonly />
+			<label for="student">Ich bin Student/Schüler</label>
+		</div>
+
+		<div class="info">
+			<p>Um Dein Ticket zum ermäßigten Preis zu kaufen, ist die Vorlage Deines Studentenausweises bei der Abholung erforderlich.</p>
+		</div>
+	</div>
+
+	<div class="inputbox checkbox">
+		<div class="input">
+			<input type="checkbox" id="alumni" ng-checked="guest.alumni == 1" name="alumni" disabled readonly />
+			<label for="alumni">Ich bin SOM Alumni</label>
+		</div>
+	</div>
+
+	<div class="inputbox checkbox">
+		<div class="input">
+			<input type="checkbox" id="aftershow" ng-checked="guest.aftershow == 1" name="aftershow" disabled readonly />
+			<label for="aftershow">Ich möchte ein Ticket für die Aftershow-Party im Unikeller (6€)</label>
+		</div>
+	</div>
+
+	<div class="inputbox checkbox">
+		<div class="input">
+			<input type="checkbox" id="workshop" ng-checked="guest.workshop == 1" name="workshop" disabled readonly />
+			<label for="workshop">Ich möchte am <a href="http://symposium-oeconomicum.de/som-2016/#Workshop">Vortagesworkshop mit KPMG</a> teilnehmen</label>
+		</div>
+	</div>
+
+	<div class="tickets-container">
+		<div class="ticket border off">
+			<div class="status-bar"></div>
+			<img src="/style/img/TK{{ticket.id}}.png" />
+			<span class="title">{{ticket.title}}</span>
+			<span class="subtitle">{{ticket.subtitle}}</span>
+			<span class="price">
+				<span class="value">{{guest.toPay}}</span>
+				<span class="euro">€</span>
+			</span>
+		</div>
+	</div>
+</section>

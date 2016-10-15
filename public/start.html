@@ -1,0 +1,93 @@
+<!doctype html>
+
+<head>
+
+	<title>Symposium Oeconomicum Muenster e.V. - Vorverkauf</title>
+	
+	<!-- env:prod --#>
+	<link rel="stylesheet" type="text/css" href="/build/css/style.css">
+	<!-- env:prod:end -->
+		
+	<!-- env:dev -->
+	<script>less = { env: 'development'};</script>
+	<link rel="stylesheet/less" type="text/css" href="/style/less/style.less" />
+	<script src="/libs/less/dist/less-1.7.0.min.js" type="text/javascript"></script>
+	<!-- env:dev:end -->
+
+	<base href="/" />
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<meta property="og:title" content="Symposium Oeconomicum Muenster – Vorverkauf"/>
+	<meta property="og:image" content="http://vorverkauf.symposium-oeconomicum.de/som-logo-100x100.png"/>
+	<meta property="og:url" content="http://vorverkauf.symposium-oeconomicum.de/"/>
+	<meta property="og:site_name" content="Symposium Oeconomicum Muenster – Vorverkauf"/>
+	<meta property="og:description" content="Der Vorverkauf für das Symposium Oeconomicum Muenster"/>
+	
+	<!-- FONTS -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+	
+	<!-- html5 shim for IE 9 and below -->
+	<!--[if lt IE 9]>
+		<script src="/libs/html5shiv/dist/html5shiv.min.js"></script>
+	<![endif]-->
+
+	<!--[if (gte IE 6)&(lte IE 8)]>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.3.0/respond.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script>
+	<![endif]-->
+
+	<!-- build:js /build/js/app.js -->
+	<script src="//cdn.optimizely.com/js/7610134.js"></script>
+
+	<script src="/libs/angular/angular.js"></script>
+	<script src="/libs/angular-animate/angular-animate.js"></script>
+	<script src="/libs/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="/libs/angular-ui-utils/ui-utils.js"></script>
+	<script src="/libs/angular-sanitize/angular-sanitize.js"></script>
+	
+	<!-- angular extentsion -->
+	<script src="/libs/ng-file-upload/ng-file-upload-shim.js"></script>
+	<script src="/libs/ng-file-upload/ng-file-upload.js"></script>
+	
+	<script src="https://code.angularjs.org/1.2.5/i18n/angular-locale_de.js"></script>
+
+	<!-- libs -->
+	<script src="/libs/underscore/underscore.js"></script>
+	<script src="/libs/async/lib/async.js"></script>
+	<script src="/libs/moment/moment.js"></script>
+	<script src="/libs/moment/lang/de.js"></script>
+	<script src="/libs/spin.js/spin.js"></script>
+	<script src="/libs/sweetalert/lib/sweet-alert.min.js"></script>
+	<script src="/libs/ng-dialog/js/ngDialog.min.js"></script>
+	<!-- <script src="/libs/photoswipe/dist/photoswipe.min.js"></script>
+	<script src="/libs/photoswipe/dist/photoswipe-ui-default.min.js"></script> -->
+	
+	<script type="text/javascript" src="https://s3.amazonaws.com/es6-promises/promise-1.0.0.min.js"></script>
+
+	<!-- <script src="/libs/angulartics/src/angulartics.js"></script>
+	<script src="/libs/angulartics/src/angulartics-ga.js"></script> -->
+	
+	<!-- app -->
+	<script src="/js/main.js"></script>
+	<script src="/js/config.js"></script>
+	<script src="/js/controllers.js"></script>
+	<script src="/js/services.js"></script>
+	<script src="/js/directives.js"></script>
+	<!-- <script src="/js/filters.js"></script> -->
+	<!-- endbuild -->
+</head>
+<body ng-app="app">
+	<ui-view></ui-view>
+	<div id="global-overlay" class="overlay black"></div>
+</body>
+
+<script type="text/javascript">
+	window.Overlay = {
+		elem: document.getElementById('global-overlay'),
+		show: function() { Overlay.elem.style.display = 'block' },
+		hide: function() { Overlay.elem.style.display = 'none' }
+  	}
+</script>
+
+</html>

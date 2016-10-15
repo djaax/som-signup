@@ -1,0 +1,12 @@
+<header role="main" class="navigation">
+	<div class="logo-container"><img src="/style/img/som-logo.png" alt="SOM Logo" /></div>
+
+	<div class="buttons-container">
+		<div class="button bubble orange login" ng-click="openLoginDialog()" ng-if="!auth">Login</div>
+		<a href="/auth/logout"><div class="button bubble orange logout" ng-if="auth">Logout</div></a>
+	</div>
+</header>
+
+<div id="main">
+	<div ui-view="main"></div>
+</div>

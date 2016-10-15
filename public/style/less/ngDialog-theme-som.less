@@ -1,0 +1,126 @@
+@-webkit-keyframes ngdialog-flyin {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-40px);
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes ngdialog-flyin {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-40px);
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes ngdialog-flyout {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-40px);
+    transform: translateY(-40px);
+  }
+}
+
+@keyframes ngdialog-flyout {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(-40px);
+    transform: translateY(-40px);
+  }
+}
+
+.ngdialog {
+  z-index: 500;
+}
+
+.ngdialog {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.ngdialog.ngdialog-theme-som {
+  padding-bottom: 160px;
+  padding-top: 160px;
+}
+
+.ngdialog.ngdialog-theme-som.ngdialog-closing .ngdialog-content {
+  -webkit-animation: ngdialog-flyout .5s;
+  animation: ngdialog-flyout .5s;
+}
+
+.ngdialog.ngdialog-theme-som .ngdialog-content {
+  -webkit-animation: ngdialog-flyin .5s;
+  animation: ngdialog-flyin .5s;
+  max-width: 100%;
+  position: relative;
+  width: 450px;
+  background: white;
+  margin: 0 auto;
+  .BoxShadowHelper(3);
+}
+
+.ngdialog.ngdialog-theme-som .ngdialog-close {
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  right: -35px;
+  top: -35px;
+}
+
+.ngdialog.ngdialog-theme-som .ngdialog-close:before {
+  background: transparent;
+  border-radius: 3px;
+  color: #bbb;
+  content: '\00D7';
+  font-size: 26px;
+  font-weight: 400;
+  height: 30px;
+  line-height: 26px;
+  position: absolute;
+  right: 3px;
+  text-align: center;
+  top: 3px;
+  width: 30px;
+}
+
+.ngdialog.ngdialog-theme-som .ngdialog-close:hover:before,
+.ngdialog.ngdialog-theme-som .ngdialog-close:active:before {
+  color: #777;
+}
+
+.ngdialog.ngdialog-theme-som .ngdialog-button:focus {
+  -webkit-animation: ngdialog-pulse 1.1s infinite;
+  animation: ngdialog-pulse 1.1s infinite;
+  outline: none;
+}
+
+@media (max-width: 568px) {
+  .ngdialog.ngdialog-theme-som .ngdialog-button:focus {
+    -webkit-animation: none;
+    animation: none;
+  }
+}

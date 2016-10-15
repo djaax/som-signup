@@ -1,0 +1,161 @@
+<section class="intro">
+	<span class="headline"><h1>SOM 2016: Ticket Reservierung</h1></span>
+	<p>Liebe Teilnehmerin, lieber Teilnehmer des 29. Symposium Oeconomicum Muenster,</p>
+
+	<p>Deine Karte für das SOM beinhaltet neben den Vorträgen auch die Verpflegung und das anschließende Get-Together mit Live Musik.</p>
+	
+	<p>Die Abholung der Karten ist zu folgenden Zeiten:<span class="date">14. April von 11:15 – 16:15 und 15. April, 9:15 – 16:15 Uhr</span>beim CSI – unten beim Fachschaftsbüro – möglich.</p>
+
+	<p>Sollte die Karte bis zum 15. April nicht abgeholt werden, verfällt die Reservierung.</p> 
+
+	<p>Reserviere Dir gleich eine Karte für unsere exklusive Aftershowparty im Unikeller – der Preis beträgt 6 € im Vorverkauf.</p>
+</section>
+
+<form novalidate id="signupForm" name="signupForm">
+	<section class="basics">
+		<div class="headline"><h2>Allgemein</h2></div>
+
+		<div class="inputbox radio">
+			<span class="label">Anrede</span>
+			<div class="input" ng-class="{ error : signupForm.salutation.$invalid && signupForm.$submitted }">
+				<div class="input radio">
+					<input type="radio" ng-model="signup.salutation" value="Frau" id="mrs" />
+					<label for="mrs">Frau</label>
+				</div>
+
+				<div class="input radio">
+					<input type="radio" ng-model="signup.salutation" value="Herr" id="mr" />
+					<label for="mr">Herr</label>
+				</div>
+				
+				<div class="error">
+					<span class="text" ng-show="signupForm.salutation.$empty">Dieses Feld wird benötigt</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="inputbox">
+			<span class="label">Vorname</span>
+			<div class="input" ng-class="{ error : signupForm.firstname.$invalid && signupForm.$submitted }">
+				<input type="text" ng-model="signup.firstname" name="firstname" placeholder="Vorname" required />
+				
+				<div class="error">
+					<span class="icon ion-close"></span>
+					<span class="text" ng-show="signupForm.firstname.$empty">Dieses Feld wird benötigt</span>
+					<span class="text" ng-show="signupForm.firstname.$invalid">Dieser Name ist nicht möglich</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="inputbox">
+			<span class="label">Nachname</span>
+			<div class="input" ng-class="{ error : signupForm.lastname.$invalid && signupForm.$submitted }">
+				<input type="text" ng-model="signup.lastname" name="lastname" placeholder="Nachname" required />
+				
+				<div class="error">
+					<span class="icon ion-close"></span>
+					<span class="text" ng-show="signupForm.lastname.$empty">Dieses Feld wird benötigt</span>
+					<span class="text" ng-show="signupForm.lastname.$invalid">Dieser Name ist nicht möglich</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="inputbox">
+			<span class="label">E-Mail Adresse</span>
+			<div class="input" ng-class="{ error : signupForm.email.$invalid && signupForm.$submitted }">
+				<input type="text" ng-model="signup.email" name="email" placeholder="E-Mail Adresse" required />
+				
+				<div class="error">
+					<span class="icon ion-close"></span>
+					<span class="text" ng-show="signupForm.email.$empty">Dieses Feld wird benötigt</span>
+					<span class="text" ng-show="signupForm.email.$invalid">Diese E-Mail Adresse ist nicht möglich</span>
+				</div>
+			</div>
+
+			<div class="info">
+				<p>An diese E-Mail Adresse wird die Reservierungsbestätigung und Dein Passwort gesendet.</p>
+			</div>
+		</div>
+
+		<div class="inputbox checkbox">
+			<input type="checkbox" id="oneOnOne" ng-model="signup.oneOnOne" name="oneOnOne" />
+			<label for="oneOnOne">Ich habe Interesse an der Teilnahme an Einzelgesprächen.</label>
+		</div>
+	</section>
+
+	<section class="tickets">
+		<div class="headline"><h2>Tickets</h2></div>
+
+		<div class="inputbox checkbox">
+			<div class="input">
+				<input type="checkbox" id="student" ng-model="signup.student" name="student" />
+				<label for="student">Ich bin Student/Schüler</label>
+			</div>
+
+			<div class="info">
+				<p>Um Dein Ticket zum ermäßigten Preis zu kaufen, ist die Vorlage Deines Studentenausweises bei der Abholung erforderlich.</p>
+			</div>
+		</div>
+
+		<div class="inputbox checkbox">
+			<div class="input">
+				<input type="checkbox" id="alumni" ng-model="signup.alumni" name="alumni" />
+				<label for="alumni">Ich bin SOM Alumni</label>
+			</div>
+		</div>
+
+		<div class="inputbox" ng-if="signup.alumni">
+			<span class="label">SOM Alumni Code</span>
+			<div class="input" ng-class="{ error : signupForm.alumniCode.$invalid && signupForm.$submitted }">
+				<input type="password" ng-model="signup.alumniCode" name="alumniCode" placeholder="SOM Alumni Code" />
+				
+				<div class="error">
+					<span class="icon ion-close"></span>
+					<span class="text" ng-show="signupForm.alumniCode.$empty">Dieser Code ist ungültig</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="inputbox checkbox">
+			<div class="input">
+				<input type="checkbox" id="aftershow" ng-model="signup.aftershow" name="aftershow" />
+				<label for="aftershow">Ich möchte ein Ticket für die Aftershow Party im UniKeller (6€)</label>
+			</div>
+		</div>
+
+		<div class="inputbox checkbox">
+			<div class="input">
+				<input type="checkbox" id="workshop" ng-model="signup.workshop" name="workshop" />
+				<label for="workshop">Ich möchte am <a target="_blank" href="http://symposium-oeconomicum.de/som-2016/#Workshop">Vortagesworkshop mit KPMG</a> teilnehmen</label>
+			</div>
+		</div>
+
+		<div class="tickets-container">
+			<div class="flex-box">
+				<div class="ticket {{ticket.status}} {{ticket.selected}}" ng-repeat="ticket in tickets" ng-click="selectTicket(ticket)">
+					<div class="status-bar"></div>
+					<img src="/style/img/TK{{ticket.id}}.png" />
+					<span class="title">{{ticket.title}}</span>
+					<span class="subtitle">{{ticket.subtitle}}</span>
+					<span class="status-text bubble"
+						ng-class="{
+							green: ticket.status == 'available',
+							orange: ticket.status == 'short',
+							red: ticket.status == 'sold-out'
+						}">{{ticket.status_text}}</span>
+					<span class="price">
+						<span class="value" ng-if="!signup.student && !signup.aftershow && !signup.alumni">{{ticket.price}}</span>
+						<span class="value" ng-if="!signup.student && signup.aftershow && !signup.alumni">{{ticket.price + 6}}</span>
+						<span class="value" ng-if="signup.student && !signup.aftershow && !signup.alumni">{{ticket.price - 26}}</span>
+						<span class="value" ng-if="signup.student && signup.aftershow && !signup.alumni">{{ticket.price - 26 + 6}}</span>
+						<span class="value" ng-if="signup.alumni && !signup.aftershow">0</span>
+						<span class="value" ng-if="signup.alumni && signup.aftershow">6</span>
+						<span class="euro">€</span>
+					</span>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<input class="button flat big blue" ng-class="{ off: signupForm.$submitted }" type="submit" ng-click="signup(signupForm.$valid)" value="Jetzt reservieren"/>
+</form>

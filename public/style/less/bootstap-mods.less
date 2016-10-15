@@ -1,0 +1,114 @@
+.popover {
+	.popover-inner {
+		white-space: nowrap;
+
+		.popover-content {
+			font-size: 13px;
+			padding: 6px 11px;
+		}
+	}
+}
+
+.label {
+	padding: 0;
+	font-size: 13px;
+	font-weight: 300;
+	color: #333;
+	text-align: left;
+	.border-radius(0);
+	display: block;
+}
+
+/*
+ * MODAL
+ */
+.modal-header {
+	border: none;
+	padding: 20px 30px 0;
+	font-size: 0;
+}
+.modal-title {
+	text-align: center;
+	font-size: 36px;
+	font-weight: 300;
+	margin: 30px 0;
+}
+.modal-body {
+	padding: 0 30px;
+
+	input[type=text].large {
+		font-size: 22px;
+		padding: 7px 10px;
+		font-weight: 400;
+	}
+
+	.footer {
+		margin: 15px 0;
+	}
+}
+.modal-footer {
+	border: none;
+	padding: 10px 30px 20px;
+
+	.button {
+		padding: 10px 50px;
+		margin: 0 0 0px 10px;
+	}
+
+	.button.fullwidth {
+		width: 100%;
+		margin: 5px 0 0 10px;
+	}
+}
+
+
+.breadcrumb {
+	padding: 0;
+	margin-bottom: 0;
+	background-color: transparent;
+	.border-radius(0);
+}
+
+mark, .mark {
+	background: transparent;
+	padding: 0;
+}
+
+.thumbnail {
+	display: block;
+	padding: 0;
+	margin: 0;
+	line-height: 1;
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	.transition(all 0);
+}
+
+.modal-sm {
+	width: 380px;
+}
+
+.popover {
+	.transition(opacity 0.3s);
+	
+	&.ng-enter {
+		display: block;
+		visibility: visible;
+		opacity: 0;
+	}
+
+	&.ng-enter-active {
+		opacity: 1;
+	}
+
+	&.ng-leave {
+		opacity: 1;
+	}
+
+	&.ng-leave-active {
+		opacity: 0;
+	}
+}
+
+

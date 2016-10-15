@@ -1,0 +1,31 @@
+<form id="login" name="loginForm" novalidate ng-submit="send(loginForm.$valid)">
+	<div class="modal-header">
+	    <h3 class="modal-title">Login</h3>
+	</div>
+	<div class="modal-body inputbox-container">
+		<div class="inputbox">
+			<label class="light" for="email">E-Mail</label>
+			<div class="input" ng-class="{ error: loginForm.email.$invalid && loginForm.submitted }">
+				<input type="email" ng-model="credentials.email" placeholder="E-Mail Adresse" name="email" required ng-minlength="2"/>
+				<div class="error">
+					<span class="icon ion-close-round"></span>
+					<span class="text" ng-show="loginForm.email.$invalid">Die E-Mail Adresse ist nicht korrekt...</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="inputbox">
+			<label class="light" for="email">Passwort</label>
+			<div class="input" ng-class="{ error : loginForm.password.$invalid && loginForm.submitted }">
+				<input type="password" ng-model="credentials.password" placeholder="Passwort" name="password" required />
+				<div class="error">
+					<span class="icon ion-close-round"></span>
+					<span class="text">... oder das Passwort ist nicht korrekt</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<input type="submit" class="button flat big dark-blue submit" value="Login"/>
+	</div>
+</form>

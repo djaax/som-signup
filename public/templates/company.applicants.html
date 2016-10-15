@@ -1,0 +1,18 @@
+<section class="applicants-list">
+	<div class="list-header">
+		<div class="title">Bewerber</div>
+	</div>
+	<div class="list-content">
+		<table class="applicants list">
+			<tr ng-repeat="a in applicants">
+				<td>
+					<span class="value">{{a.firstname}} {{a.lastname}}</span>
+					<span class="label">Name</span>
+				</td>
+				<td>
+					<a href="/api/dn/cv/{{a.cv}}"><span class="button flat blue">CV herunterladen</span></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</section>

@@ -1,0 +1,42 @@
+<section class="applicants-list">
+	<div class="list-header">
+		<div class="title">Gäste</div>
+		<div class="search">
+			<input class="reverse" type="text" placeholder="Suche" ng-model="searchItems" />
+		</div>
+	</div>
+	<div class="list-content">
+		<table class="guests list">
+			<tr ng-hide="filtered.length">
+				<td class="empty">Keine Einträge gefunden</td>
+			</tr>
+
+			<tr ng-repeat="g in filtered = (guests | filter:searchItems) | orderBy:['delivered','-timestamp']">
+				<td class="status" ng-class="{ green: g.delivered==1 || g.delivered>10, grey: g.delivered==0 || g.delivered==2 || g.delivered==3 }"></td>
+				<td>
+					<span class="value">{{g.firstname}} {{g.lastname}}</span>
+					<span class="label">Name</span>
+				</td>
+				<td>
+					<span class="value">{{g.ticket_id}}</span>
+					<span class="label">TK</span>
+				</td>
+				<td>
+					<span class="value">{{g.aftershow_text}}</span>
+					<span class="label">Aftershow</span>
+				</td>
+				<td>
+					<span class="value">{{g.toPay}} €</span>
+					<span class="label">zu zahlen</span>
+				</td>
+				<!-- <td>
+					<span class="bubble" ng-class="{ green: g.delivered==1, grey: g.delivered==0 }">{{g.delivered_text}}</span>
+				</td> -->
+				<td>
+					<div class="button flat blue" ng-if="g.delivered==0 || g.delivered==2 || g.delivered==3" ng-click="setDelivered(g,1)">abholen</div>
+					<div class="button flat grey" ng-if="g.delivered==1 || g.delivered>10" ng-click="setDelivered(g,0)">zurücksetzen</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</section>

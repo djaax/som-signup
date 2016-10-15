@@ -1,0 +1,18 @@
+<section class="tickets-list" style="width:100%">
+	<div class="tickets-container">
+		<div class="flex-box">
+			<div class="ticket {{ticket.status}} border off" ng-repeat="ticket in tickets">
+				<div class="status-bar"></div>
+				<img src="/style/img/TK{{ticket.id}}.png" />
+				<span class="title">{{ticket.title}}</span>
+				<span class="subtitle">{{ticket.subtitle}}</span>
+				<span class="status-text bubble"
+					ng-class="{
+						green: ticket.status == 'available',
+						orange: ticket.status == 'short',
+						red: ticket.status == 'sold-out'
+					}">{{ticket.max_stock-ticket.sold}}/{{ticket.max_stock}} {{ticket.status_text}}</span>
+			</div>
+		</div>
+	</div>
+</section>
