@@ -8,7 +8,7 @@
 
 	<p>Sollte die Karte bis zum 15. April nicht abgeholt werden, verfällt die Reservierung.</p> 
 
-	<p>Reserviere Dir gleich eine Karte für unsere exklusive Aftershowparty im Unikeller – der Preis beträgt 6 € im Vorverkauf.</p>
+	<p>Reserviere Dir gleich eine Karte für unsere exklusive Aftershowparty im Unikeller – der Preis beträgt {{priceAftershow}} € im Vorverkauf.</p>
 </section>
 
 <form novalidate id="signupForm" name="signupForm">
@@ -119,7 +119,7 @@
 		<div class="inputbox checkbox">
 			<div class="input">
 				<input type="checkbox" id="aftershow" ng-model="signup.aftershow" name="aftershow" />
-				<label for="aftershow">Ich möchte ein Ticket für die Aftershow Party im UniKeller (6€)</label>
+				<label for="aftershow">Ich möchte ein Ticket für die Aftershow Party im UniKeller ({{priceAftershow}}€)</label>
 			</div>
 		</div>
 
@@ -145,11 +145,11 @@
 						}">{{ticket.status_text}}</span>
 					<span class="price">
 						<span class="value" ng-if="!signup.student && !signup.aftershow && !signup.alumni">{{ticket.price}}</span>
-						<span class="value" ng-if="!signup.student && signup.aftershow && !signup.alumni">{{ticket.price + 6}}</span>
-						<span class="value" ng-if="signup.student && !signup.aftershow && !signup.alumni">{{ticket.price - 26}}</span>
-						<span class="value" ng-if="signup.student && signup.aftershow && !signup.alumni">{{ticket.price - 26 + 6}}</span>
+						<span class="value" ng-if="!signup.student && signup.aftershow && !signup.alumni">{{ticket.price + priceAftershow}}</span>
+						<span class="value" ng-if="signup.student && !signup.aftershow && !signup.alumni">{{ticket.price - discountStudent}}</span>
+						<span class="value" ng-if="signup.student && signup.aftershow && !signup.alumni">{{ticket.price - discountStudent + priceAftershow}}</span>
 						<span class="value" ng-if="signup.alumni && !signup.aftershow">0</span>
-						<span class="value" ng-if="signup.alumni && signup.aftershow">6</span>
+						<span class="value" ng-if="signup.alumni && signup.aftershow">{{priceAftershow}}</span>
 						<span class="euro">€</span>
 					</span>
 				</div>
@@ -157,5 +157,5 @@
 		</div>
 	</section>
 
-	<input class="button flat big blue" ng-class="{ off: signupForm.$submitted }" type="submit" ng-click="signup(signupForm.$valid)" value="Jetzt reservieren"/>
+	<input class="button flat big blue" ng-class="{ off: !signupForm.$valid }" type="submit" ng-click="signup(signupForm.$valid)" value="Jetzt reservieren"/>
 </form>

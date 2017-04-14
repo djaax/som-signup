@@ -19,18 +19,34 @@ module.exports = function(app) {
     var server = express();
 
     server.get('/', function(req, res) {
-        // Check Tickets, if sold out -> show sold-out page
-        var indexTpl = hogan.compile(fs.readFileSync(app.dir + '/public/start.html', 'utf-8'));
-        res.set('Content-Type', 'text/html');
-        res.send(indexTpl.render());
+        app.sql.query('SELECT themenkreise.*, COUNT(guests.ticket_id) as sold FROM themenkreise LEFT JOIN guests ON themenkreise.id = guests.ticket_id GROUP BY themenkreise.id', function(err, results) {
+            if (err) throw err;
+
+            var ticketsAvailable = _.some(_.map(results, function(i) {
+                return i.sold < i.max_stock;
+            }));
+
+            var path;
+            if ( !ticketsAvailable ) {
+                path = 'ausverkauft';
+            } else if ( moment().unix() < app.config.start ) {
+                path = 'countdown';
+            } else if ( moment().unix() > app.config.start && ticketsAvailable ) {
+                path = 'tickets';
+            }
+
+            var indexTpl = hogan.compile(fs.readFileSync(app.dir + '/public/start.html', 'utf-8'));
+            res.set('Content-Type', 'text/html');
+            res.send(indexTpl.render({ path }));
+        });
     });
 
 
     /*
-     * Get Themenkreise -- aftersale
+     * Get Themenkreise
      */
     server.get('/api/tickets', function(req, res) {
-    	app.sql.query('SELECT themenkreise.*, COUNT(guests.ticket_id) as sold FROM themenkreise LEFT JOIN guests ON themenkreise.id = guests.ticket_id WHERE NOT(guests.delivered=3) GROUP BY themenkreise.id', function(err, themenkreise) {
+    	app.sql.query('SELECT themenkreise.*, COUNT(guests.ticket_id) as sold FROM themenkreise LEFT JOIN guests ON themenkreise.id = guests.ticket_id GROUP BY themenkreise.id', function(err, themenkreise) {
     		if (err) throw err;
 
     		// check for sold-out
@@ -49,7 +65,12 @@ module.exports = function(app) {
                 }
     		});
 
-    		res.status(200).send({ tickets: themenkreise });
+    		res.status(200).send({
+                tickets: themenkreise,
+                ticketPrice: app.config.ticketPrice,
+                priceAftershow: app.config.priceAftershow,
+                discountStudent: app.config.discountStudent
+            });
     	});
     });
 
@@ -183,7 +204,10 @@ module.exports = function(app) {
 
                     /*
                      * Set Rooms: Derjenige TK der am wenigsten Reservierungen hat bekommt den kleinsten Raum zugeteilt.
-                     * /
+                     *
+                     * Nicht für den Nach-Verkauf! (Auskommentieren)
+                     *
+                     */
                     var rooms = [45, 95, 100, 100, 105, 110]; // S6, S2, S9, S8, S1, S10
                     app.sql.query('SELECT themenkreise.*, COUNT(guests.ticket_id) as sold FROM themenkreise LEFT JOIN guests ON themenkreise.id = guests.ticket_id GROUP BY themenkreise.id ORDER BY sold', function(err, themenkreise) {
                         if (err) throw err;
@@ -307,6 +331,8 @@ module.exports = function(app) {
         app.sql.query('SELECT * FROM guests ORDER BY delivered, timestamp', function(err, guests) {
             if (err) throw err;
             _.each(guests, function(guest) {
+                guest.name = guest.firstname + ' ' + guest.lastname;
+
                 if ( guest.delivered == 1 ) {
                     guest.delivered_text = 'abgeholt';
                 } else {
@@ -362,7 +388,7 @@ module.exports = function(app) {
      */
     server.post('/api/upload/cv', app.auth.guest, app.upload.single('file'), function(req, res) {
         // deadline over
-        return res.sendStatus(403);
+        //return res.sendStatus(403);
 
         if ( !req.file ) return res.sendStatus(400);
 
@@ -443,8 +469,6 @@ module.exports = function(app) {
     server.get('/api/tk/:id', function(req, res) {
         app.sql.query('SELECT * FROM themenkreise WHERE id = ?', [req.params.id], function(err, results) {
             if (err) throw err;
-
-            console.log(results);
 
             if ( !results.length ) return res.sendStatus(404);
 

@@ -38,7 +38,7 @@
 	<![endif]-->
 
 	<!-- build:js /build/js/app.js -->
-	<script src="//cdn.optimizely.com/js/7610134.js"></script>
+	<!-- <script src="//cdn.optimizely.com/js/7610134.js"></script> -->
 
 	<script src="/libs/angular/angular.js"></script>
 	<script src="/libs/angular-animate/angular-animate.js"></script>
@@ -58,12 +58,10 @@
 	<script src="/libs/moment/moment.js"></script>
 	<script src="/libs/moment/lang/de.js"></script>
 	<script src="/libs/spin.js/spin.js"></script>
-	<script src="/libs/sweetalert/lib/sweet-alert.min.js"></script>
+	<script src="/libs/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="/libs/ng-dialog/js/ngDialog.min.js"></script>
 	<!-- <script src="/libs/photoswipe/dist/photoswipe.min.js"></script>
 	<script src="/libs/photoswipe/dist/photoswipe-ui-default.min.js"></script> -->
-	
-	<script type="text/javascript" src="https://s3.amazonaws.com/es6-promises/promise-1.0.0.min.js"></script>
 
 	<!-- <script src="/libs/angulartics/src/angulartics.js"></script>
 	<script src="/libs/angulartics/src/angulartics-ga.js"></script> -->
@@ -76,6 +74,8 @@
 	<script src="/js/directives.js"></script>
 	<!-- <script src="/js/filters.js"></script> -->
 	<!-- endbuild -->
+
+	<script type="text/javascript" src="https://s3.amazonaws.com/es6-promises/promise-1.0.0.min.js"></script>
 </head>
 <body ng-app="app">
 	<ui-view></ui-view>
@@ -88,6 +88,8 @@
 		show: function() { Overlay.elem.style.display = 'block' },
 		hide: function() { Overlay.elem.style.display = 'none' }
   	}
+
+  	window.path = "{{{path}}}";
 </script>
 
 </html>

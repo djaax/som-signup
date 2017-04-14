@@ -1,6 +1,6 @@
 angular.module('app.controllers', ['app.config'])
 
-.controller('NavigationCtrl', function($scope, $state, ngDialog) {
+.controller('NavigationCtrl', function($scope, $state, $rootScope, ngDialog) {
 	$scope.openLoginDialog = function() {
 		var dialog = ngDialog.open({
 			templateUrl: '/templates/login.modal.html',
@@ -12,6 +12,18 @@ angular.module('app.controllers', ['app.config'])
 	    	$state.go(results.value.redirectState, results.value.redirectParams);
 	    });
 	}
+
+	var checkView = function(state) {
+		if ( /nav.admin.guests/g.test(state.name) ) {
+			$scope.mainStyle = 'no-padding';
+		} else {
+			$scope.mainStyle = 'default';
+		}
+	}
+	checkView($state.current);
+	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+		checkView(toState);
+	});
 })
 
 .controller('LoginCtrl', function($scope, $rootScope, Auth) {
@@ -41,7 +53,10 @@ angular.module('app.controllers', ['app.config'])
 })
 
 .controller('SignupCtrl', function($scope, $rootScope, $state, Signup, tickets) {
-	$scope.tickets = tickets.data.tickets;
+	$scope.tickets 			= tickets.data.tickets;
+	$scope.ticketPrice 		= tickets.data.ticketPrice;
+    $scope.priceAftershow 	= tickets.data.priceAftershow;
+    $scope.discountStudent 	= tickets.data.discountStudent;
 
 	$scope.signup = {};
 

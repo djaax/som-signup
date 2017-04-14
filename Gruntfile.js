@@ -120,14 +120,12 @@ module.exports = function(grunt) {
       },
       dev: {
         constants: {
-          ENV: 'development',
-          defaultPath: 'sold-out'
+          ENV: 'development'
         }
       },
       prod: {
         constants: {
-          ENV: 'production',
-          defaultPath: 'sold-out'
+          ENV: 'production'
         }
       }
     },

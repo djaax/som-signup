@@ -59,7 +59,7 @@ angular.module('app.services', [])
 	}
 })
 
-.factory('AuthInterceptor', function($q, $location, $window, defaultPath) {
+.factory('AuthInterceptor', function($q, $location, $window) {
     return {
         request: function (config) {
         	/*
@@ -77,7 +77,7 @@ angular.module('app.services', [])
         responseError: function(rejection) {
             if ( rejection.status === 401 ) {
                 console.log('401');
-                window.location = '/#/'+defaultPath;
+                window.location = '/#/'+window.path;
             }
 
             return $q.reject(rejection);

@@ -96,7 +96,7 @@ angular.module('app', [
 	});
 })
 
-.config(function($stateProvider, $urlRouterProvider, defaultPath) {
+.config(function($stateProvider, $urlRouterProvider) {
 
 $stateProvider
  	/*
@@ -111,23 +111,23 @@ $stateProvider
 
 
 	/*
-	 * Wait for it
+	 * Countdown
 	 */
-	.state('nav.wait-for-it', {
-		url: '/wait-for-it',
+	.state('nav.countdown', {
+		url: '/countdown',
 		views: {
 			'main@nav': {
-				templateUrl: '/templates/wait-for-it.html'
+				templateUrl: '/templates/countdown.html'
 			}
 		},
 	})
 
 
 	/*
-	 * Wait for it
+	 * Sold Out
 	 */
 	.state('nav.sold-out', {
-		url: '/sold-out',
+		url: '/ausverkauft',
 		views: {
 			'main@nav': {
 				templateUrl: '/templates/sold-out.html'
@@ -140,7 +140,7 @@ $stateProvider
 	 * Signup
 	 */
 	.state('nav.signup', {
-		url: '/registrieren',
+		url: '/tickets',
 		views: {
 			'main@nav': {
 				templateUrl: '/templates/signup.html',
@@ -204,7 +204,7 @@ $stateProvider
 			}
 		}
 	})
-	.state('nav.guest.one-on-one', {
+	.state('nav.guest.einzelgespraeche', {
 		url: '/einzelgespraeche',
 		resolve: {
 			guest: function(guest) {
@@ -213,7 +213,7 @@ $stateProvider
 		},
 		views: {
 			'content@nav.guest': {
-				templateUrl: '/templates/guest.one-on-one.html'
+				templateUrl: '/templates/guest.einzelgespraeche.html'
 			}
 		}
 	})
@@ -318,7 +318,7 @@ $stateProvider
 
 	;
 
-	$urlRouterProvider.otherwise('/'+defaultPath);
+	$urlRouterProvider.otherwise('/'+window.path);
 });
 
 
